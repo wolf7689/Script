@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 # _*_ coding:utf-8 _*_
+
+"""
+环境变量说明：
+export JIKE_COOKIE="网站cookie，分号;隔开" 
+cron: 0 0 8 * * *
+new Env('极客云签到');
+"""
+
 import requests
 import os
 
