@@ -12,14 +12,8 @@ from notify import *
 import requests
 import os
 
-cookies = {}
 ctext = os.getenv("JIKE_COOKIE")
-ctext_a = ctext.split(";")
-
-for c in ctext_a:
-    kv = c.split("=")
-    if len(kv) > 1:
-        cookies[kv[0].strip()] = kv[1].strip()
+cookies = dict(x.strip().split("=") for x in ctext.split(";") if x)
 
 url = 'https://jike191.com/user/checkin'
 # headers = {
