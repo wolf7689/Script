@@ -9,6 +9,7 @@ new Env('极客云签到');
 """
 
 from notify import *
+import headers
 import requests
 import os
 
@@ -21,7 +22,7 @@ url = 'https://jike191.com/user/checkin'
 #     'referer': 'https://jike191.com/user'
 #     }
 
-r = requests.post(url, cookies=cookies)
+r = requests.post(url, cookies=cookies, headers=headers.headers1)
 title = "极客云签到"
 context = ""
 try:
