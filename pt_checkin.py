@@ -160,7 +160,7 @@ def ttg():
     r = session.get(main_url, cookies=cookies, headers=headers.headers1)
     if r.status_code == requests.codes.ok:
         r.encoding = 'utf-8'
-        print(r.text)
+        # print(r.text)
         if '登录' in r.html.find('title')[0].text:
             return_msg = 'ttg登录失效'
             print(return_msg)
