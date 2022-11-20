@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# _*_ coding:utf-8 _*_
 
 headers1 = {
     'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
