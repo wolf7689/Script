@@ -186,7 +186,7 @@ def ttg():
 
 if __name__ == '__main__':
     ln = '\n'
-    title = 'pt签到'
+    title = '🐺pt签到'
     context = ln
     context = context + pt_time() + ln
     context = context + hd_china() + ln
