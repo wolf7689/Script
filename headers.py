@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # _*_ coding:utf-8 _*_
 
+"""
+cron: *
+new Env('依赖文件');
+"""
+
 headers1 = {
     'sec-ch-ua': '"Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
     'sec-ch-ua-mobile': '?0',
