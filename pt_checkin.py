@@ -17,7 +17,7 @@ import os
 import demjson3
 import requests
 import requests_html
-import utils.headers as headers
+import headers
 from notify import send
 
 def generate_cookies(cookies):
