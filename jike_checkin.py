@@ -9,7 +9,7 @@ new Env('极客云签到');
 """
 
 from notify import *
-import utils.headers as headers
+import headers
 import requests
 import os
 
