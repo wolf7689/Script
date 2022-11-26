@@ -34,10 +34,10 @@ def pt_time():
     if r.status_code == requests.codes.ok:
         # print(r.text)
         if '登录' in r.html.find('title')[0].text:
-            return_msg = 'pttime登录失效'
+            return_msg = 'pttime❌登录失效'
             print(return_msg)
         else:
-            return_msg = 'pttime签到成功'
+            return_msg = 'pttime✔签到成功'
             print(return_msg)
     else:
         return_msg = 'pttime签到失败'
@@ -54,7 +54,7 @@ def hd_china():
     r = session.get(main_url, cookies=cookies, headers=headers.headers2)
     if r.status_code == requests.codes.ok:
         if 'Login' in r.html.find('title')[0].text:
-            return_msg = 'hdchina登录失效'
+            return_msg = 'hdchina❌登录失效'
             print(return_msg)
         else:
             csrf = r.html.find('meta[name="x-csrf"]')[0].attrs['content']
@@ -64,7 +64,7 @@ def hd_china():
 
             if r.status_code == requests.codes.ok:
                 print(r.json())
-                return_msg = 'hdchina签到成功'
+                return_msg = 'hdchina✔签到成功'
                 print(return_msg)
             else:
                 return_msg = 'hdchina签到失败'
@@ -84,7 +84,7 @@ def chd():
     if r.status_code == requests.codes.ok:
         # print(r.text)
         if '登录' in r.html.find('title')[0].text:
-            return_msg = 'chd登录失效'
+            return_msg = 'chd❌登录失效'
             print(return_msg)
         else:
             question_id = r.html.find('input[name="questionid"]')[0].attrs['value']
@@ -97,7 +97,7 @@ def chd():
             r = session.post(url, cookies=cookies, headers=headers.headers1, data=payload)
             if r.status_code == requests.codes.ok:
                 # print(r.text)
-                return_msg = 'chd签到成功'
+                return_msg = 'chd✔签到成功'
                 print(return_msg)
             else:
                 return_msg = 'chd签到失败'
@@ -119,10 +119,10 @@ def hd_area():
     if r.status_code == requests.codes.ok:
         print(r.text)  # 纯文本
         if len(r.html.find('title')) > 0:
-            return_msg = 'hdarea登录失效'
+            return_msg = 'hdarea❌登录失效'
             print(return_msg)
         else:
-            return_msg = 'hdarea签到成功'
+            return_msg = 'hdarea✔签到成功'
             print(return_msg)
     else:
         return_msg = 'hdarea签到失败'
@@ -140,10 +140,10 @@ def hd_time():
     if r.status_code == requests.codes.ok:
         # print(r.text)
         if '登录' in r.html.find('title')[0].text:
-            return_msg = 'hdtime登录失效'
+            return_msg = 'hdtime❌登录失效'
             print(return_msg)
         else:
-            return_msg = 'hdtime签到成功'
+            return_msg = 'hdtime✔签到成功'
             print(return_msg)
     else:
         return_msg = 'hdtime签到失败'
@@ -162,7 +162,7 @@ def ttg():
         r.encoding = 'utf-8'
         # print(r.text)
         if '登录' in r.html.find('title')[0].text:
-            return_msg = 'ttg登录失效'
+            return_msg = 'ttg❌登录失效'
             print(return_msg)
         else:
             json_text = r.text.split('$.post("signed.php", {')[1].split('},', 1)[0]
@@ -173,7 +173,7 @@ def ttg():
             if r.status_code == requests.codes.ok:
                 r.encoding = 'utf-8'
                 print(r.text)  # 纯文本
-                return_msg = 'ttg签到成功'
+                return_msg = 'ttg✔签到成功'
                 print(return_msg)
             else:
                 return_msg = 'ttg签到失败'
