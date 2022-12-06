@@ -33,12 +33,18 @@ def pt_time():
 
     if r.status_code == requests.codes.ok:
         # print(r.text)
-        if '登录' in r.html.find('title')[0].text:
-            return_msg = 'pttime❌登录失效'
-            print(return_msg)
+        title = r.html.find('title')
+        if title:
+            if '登录' in title[0].text:
+                return_msg = 'pttime❌登录失效'
+                print(return_msg)
+            else:
+                return_msg = 'pttime✔签到成功'
+                print(return_msg)
         else:
-            return_msg = 'pttime✔签到成功'
+            return_msg = 'pttime签到失败，请查看日志'
             print(return_msg)
+            print(r.text)
     else:
         return_msg = 'pttime签到失败'
         print(return_msg)
@@ -53,22 +59,28 @@ def hd_china():
     cookies = generate_cookies(ctext)
     r = session.get(main_url, cookies=cookies, headers=headers.headers2)
     if r.status_code == requests.codes.ok:
-        if 'Login' in r.html.find('title')[0].text:
-            return_msg = 'hdchina❌登录失效'
-            print(return_msg)
-        else:
-            csrf = r.html.find('meta[name="x-csrf"]')[0].attrs['content']
-            # print(csrf)
-            payload = {'csrf': csrf}
-            r = session.post(url, cookies=cookies, headers=headers.headers2, data=payload)
-
-            if r.status_code == requests.codes.ok:
-                print(r.json())
-                return_msg = 'hdchina✔签到成功'
+        title = r.html.find('title')
+        if title:
+            if 'Login' in title[0].text:
+                return_msg = 'hdchina❌登录失效'
                 print(return_msg)
             else:
-                return_msg = 'hdchina签到失败'
-                print(return_msg)
+                csrf = r.html.find('meta[name="x-csrf"]')[0].attrs['content']
+                # print(csrf)
+                payload = {'csrf': csrf}
+                r = session.post(url, cookies=cookies, headers=headers.headers2, data=payload)
+
+                if r.status_code == requests.codes.ok:
+                    print(r.json())
+                    return_msg = 'hdchina✔签到成功'
+                    print(return_msg)
+                else:
+                    return_msg = 'hdchina签到失败'
+                    print(return_msg)
+        else:
+            return_msg = 'hdchina签到失败，请查看日志'
+            print(return_msg)
+            print(r.text)
     else:
         return_msg = 'hdchina签到失败'
         print(return_msg)
@@ -83,25 +95,31 @@ def chd():
     r = session.get(url, cookies=cookies, headers=headers.headers1)
     if r.status_code == requests.codes.ok:
         # print(r.text)
-        if '登录' in r.html.find('title')[0].text:
-            return_msg = 'chd❌登录失效'
-            print(return_msg)
-        else:
-            question_id = r.html.find('input[name="questionid"]')[0].attrs['value']
-            payload = {
-                'questionid': question_id,
-                'choice[]': 1,
-                'usercomment': '此刻心情:无',
-                'wantskip': '不会'
-            }
-            r = session.post(url, cookies=cookies, headers=headers.headers1, data=payload)
-            if r.status_code == requests.codes.ok:
-                # print(r.text)
-                return_msg = 'chd✔签到成功'
+        title = r.html.find('title')
+        if title:
+            if '登录' in title[0].text:
+                return_msg = 'chd❌登录失效'
                 print(return_msg)
             else:
-                return_msg = 'chd签到失败'
-                print(return_msg)
+                question_id = r.html.find('input[name="questionid"]')[0].attrs['value']
+                payload = {
+                    'questionid': question_id,
+                    'choice[]': 1,
+                    'usercomment': '此刻心情:无',
+                    'wantskip': '不会'
+                }
+                r = session.post(url, cookies=cookies, headers=headers.headers1, data=payload)
+                if r.status_code == requests.codes.ok:
+                    # print(r.text)
+                    return_msg = 'chd✔签到成功'
+                    print(return_msg)
+                else:
+                    return_msg = 'chd签到失败'
+                    print(return_msg)
+        else:
+            return_msg = 'chd签到失败，请查看日志'
+            print(return_msg)
+            print(r.text)
     else:
         return_msg = 'chd签到失败'
         print(return_msg)
@@ -139,12 +157,18 @@ def hd_time():
 
     if r.status_code == requests.codes.ok:
         # print(r.text)
-        if '登录' in r.html.find('title')[0].text:
-            return_msg = 'hdtime❌登录失效'
-            print(return_msg)
+        title = r.html.find('title')
+        if title:
+            if '登录' in title[0].text:
+                return_msg = 'hdtime❌登录失效'
+                print(return_msg)
+            else:
+                return_msg = 'hdtime✔签到成功'
+                print(return_msg)
         else:
-            return_msg = 'hdtime✔签到成功'
+            return_msg = 'hdtime签到失败，请查看日志'
             print(return_msg)
+            print(r.text)
     else:
         return_msg = 'hdtime签到失败'
         print(return_msg)
@@ -161,23 +185,29 @@ def ttg():
     if r.status_code == requests.codes.ok:
         r.encoding = 'utf-8'
         # print(r.text)
-        if '登录' in r.html.find('title')[0].text:
-            return_msg = 'ttg❌登录失效'
-            print(return_msg)
-        else:
-            json_text = r.text.split('$.post("signed.php", {')[1].split('},', 1)[0]
-            print(json_text)
-            payload = demjson3.decode('{' + json_text + '}')
-            r = session.post(url, cookies=cookies, headers=headers.headers1, data=payload)
-
-            if r.status_code == requests.codes.ok:
-                r.encoding = 'utf-8'
-                print(r.text)  # 纯文本
-                return_msg = 'ttg✔签到成功'
+        title = r.html.find('title')
+        if title:
+            if '登录' in title[0].text:
+                return_msg = 'ttg❌登录失效'
                 print(return_msg)
             else:
-                return_msg = 'ttg签到失败'
-                print(return_msg)
+                json_text = r.text.split('$.post("signed.php", {')[1].split('},', 1)[0]
+                print(json_text)
+                payload = demjson3.decode('{' + json_text + '}')
+                r = session.post(url, cookies=cookies, headers=headers.headers1, data=payload)
+
+                if r.status_code == requests.codes.ok:
+                    r.encoding = 'utf-8'
+                    print(r.text)  # 纯文本
+                    return_msg = 'ttg✔签到成功'
+                    print(return_msg)
+                else:
+                    return_msg = 'ttg签到失败'
+                    print(return_msg)
+        else:
+            return_msg = 'ttg签到失败，请查看日志'
+            print(return_msg)
+            print(r.text)
     else:
         return_msg = 'ttg签到失败'
         print(return_msg)
