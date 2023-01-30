@@ -29,7 +29,12 @@ def pt_time():
     session = requests_html.HTMLSession()
     ctext = os.getenv("PT_TIME_COOKIE")
     cookies = generate_cookies(ctext)
-    r = session.get(url, cookies=cookies, headers=headers.headers1)
+    try:
+        r = session.get(url, cookies=cookies, headers=headers.headers1)
+    except ConnectionError:
+        return_msg = 'pttime❌网络不通'
+        print(return_msg)
+        return return_msg
 
     if r.status_code == requests.codes.ok:
         # print(r.text)
@@ -46,6 +51,7 @@ def pt_time():
             print(return_msg)
             print(r.text)
     else:
+        print(r.status_code)
         return_msg = 'pttime签到失败'
         print(return_msg)
     return return_msg
