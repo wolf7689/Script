@@ -47,9 +47,9 @@ def pt_time():
                 return_msg = 'pttime✔签到成功'
                 print(return_msg)
         else:
+            print(r.text)
             return_msg = 'pttime签到失败，请查看日志'
             print(return_msg)
-            print(r.text)
     else:
         print(r.status_code)
         return_msg = 'pttime签到失败'
@@ -63,7 +63,13 @@ def hd_china():
     session = requests_html.HTMLSession()
     ctext = os.getenv("HDC_COOKIE")
     cookies = generate_cookies(ctext)
-    r = session.get(main_url, cookies=cookies, headers=headers.headers2)
+    try:
+        r = session.get(main_url, cookies=cookies, headers=headers.headers2)
+    except ConnectionError:
+        return_msg = 'hdchina❌网络不通'
+        print(return_msg)
+        return return_msg
+
     if r.status_code == requests.codes.ok:
         title = r.html.find('title')
         if title:
@@ -84,10 +90,11 @@ def hd_china():
                     return_msg = 'hdchina签到失败'
                     print(return_msg)
         else:
+            print(r.text)
             return_msg = 'hdchina签到失败，请查看日志'
             print(return_msg)
-            print(r.text)
     else:
+        print(r.status_code)
         return_msg = 'hdchina签到失败'
         print(return_msg)
     return return_msg
@@ -98,7 +105,13 @@ def chd():
     session = requests_html.HTMLSession()
     ctext = os.getenv("CHD_COOKIE")
     cookies = generate_cookies(ctext)
-    r = session.get(url, cookies=cookies, headers=headers.headers1)
+    try:
+        r = session.get(url, cookies=cookies, headers=headers.headers1)
+    except ConnectionError:
+        return_msg = 'chd❌网络不通'
+        print(return_msg)
+        return return_msg
+
     if r.status_code == requests.codes.ok:
         # print(r.text)
         title = r.html.find('title')
@@ -120,13 +133,15 @@ def chd():
                     return_msg = 'chd✔签到成功'
                     print(return_msg)
                 else:
+                    print(r.status_code)
                     return_msg = 'chd签到失败'
                     print(return_msg)
         else:
+            print(r.text)
             return_msg = 'chd签到失败，请查看日志'
             print(return_msg)
-            print(r.text)
     else:
+        print(r.status_code)
         return_msg = 'chd签到失败'
         print(return_msg)
     return return_msg
@@ -138,7 +153,12 @@ def hd_area():
     ctext = os.getenv("HDA_COOKIE")
     cookies = generate_cookies(ctext)
     payload = {'action': 'sign_in'}
-    r = session.post(url, cookies=cookies, headers=headers.headers1, data=payload)
+    try:
+        r = session.post(url, cookies=cookies, headers=headers.headers1, data=payload)
+    except ConnectionError:
+        return_msg = 'hdarea❌网络不通'
+        print(return_msg)
+        return return_msg
 
     if r.status_code == requests.codes.ok:
         print(r.text)  # 纯文本
@@ -149,6 +169,7 @@ def hd_area():
             return_msg = 'hdarea✔签到成功'
             print(return_msg)
     else:
+        print(r.status_code)
         return_msg = 'hdarea签到失败'
         print(return_msg)
     return return_msg
@@ -159,7 +180,12 @@ def hd_time():
     session = requests_html.HTMLSession()
     ctext = os.getenv("HD_TIME_COOKIE")
     cookies = generate_cookies(ctext)
-    r = session.get(url, cookies=cookies, headers=headers.headers1)
+    try:
+        r = session.get(url, cookies=cookies, headers=headers.headers1)
+    except ConnectionError:
+        return_msg = 'hdtime❌网络不通'
+        print(return_msg)
+        return return_msg
 
     if r.status_code == requests.codes.ok:
         # print(r.text)
@@ -172,10 +198,11 @@ def hd_time():
                 return_msg = 'hdtime✔签到成功'
                 print(return_msg)
         else:
+            print(r.text)
             return_msg = 'hdtime签到失败，请查看日志'
             print(return_msg)
-            print(r.text)
     else:
+        print(r.status_code)
         return_msg = 'hdtime签到失败'
         print(return_msg)
     return return_msg
@@ -187,7 +214,13 @@ def ttg():
     session = requests_html.HTMLSession()
     ctext = os.getenv("TTG_COOKIE")
     cookies = generate_cookies(ctext)
-    r = session.get(main_url, cookies=cookies, headers=headers.headers1)
+    try:
+        r = session.get(main_url, cookies=cookies, headers=headers.headers1)
+    except ConnectionError:
+        return_msg = 'ttg❌网络不通'
+        print(return_msg)
+        return return_msg
+
     if r.status_code == requests.codes.ok:
         r.encoding = 'utf-8'
         # print(r.text)
@@ -208,13 +241,15 @@ def ttg():
                     return_msg = 'ttg✔签到成功'
                     print(return_msg)
                 else:
+                    print(r.status_code)
                     return_msg = 'ttg签到失败'
                     print(return_msg)
         else:
+            print(r.text)
             return_msg = 'ttg签到失败，请查看日志'
             print(return_msg)
-            print(r.text)
     else:
+        print(r.status_code)
         return_msg = 'ttg签到失败'
         print(return_msg)
     return return_msg
