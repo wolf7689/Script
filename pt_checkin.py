@@ -21,7 +21,7 @@ import headers
 from notify import send
 
 def generate_cookies(cookies):
-    return dict(x.strip().split("=") for x in cookies.split(";") if x)
+    return dict(x.strip().split("=", 1) for x in cookies.split(";") if x)
 
 
 def pt_time():
