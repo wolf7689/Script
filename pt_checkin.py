@@ -40,7 +40,7 @@ def pt_time():
         # print(r.text)
         title = r.html.find('title')
         if title:
-            if '登录' in title[0].text:
+            if '登录' in title[0].text.split('\n')[0]:
                 return_msg = 'pttime❌登录失效'
                 print(return_msg)
             else:
@@ -73,7 +73,7 @@ def hd_china():
     if r.status_code == requests.codes.ok:
         title = r.html.find('title')
         if title:
-            if 'Login' in title[0].text:
+            if 'Login' in title[0].text.split('\n')[0]:
                 return_msg = 'hdchina❌登录失效'
                 print(return_msg)
             else:
@@ -116,7 +116,7 @@ def chd():
         # print(r.text)
         title = r.html.find('title')
         if title:
-            if '登录' in title[0].text:
+            if '登录' in title[0].text.split('\n')[0]:
                 return_msg = 'chd❌登录失效'
                 print(return_msg)
             else:
@@ -226,7 +226,7 @@ def ttg():
         # print(r.text)
         title = r.html.find('title')
         if title:
-            if '登录' in title[0].text:
+            if '登录' in title[0].text.split('\n')[0]:
                 return_msg = 'ttg❌登录失效'
                 print(return_msg)
             else:
