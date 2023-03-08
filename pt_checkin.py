@@ -31,7 +31,8 @@ def pt_time():
     cookies = generate_cookies(ctext)
     try:
         r = session.get(url, cookies=cookies, headers=headers.headers1)
-    except (ConnectionError, ConnectionResetError):
+    except Exception as e:
+        print(type(e))
         return_msg = 'pttime❌网络不通'
         print(return_msg)
         return return_msg
@@ -65,7 +66,8 @@ def hd_china():
     cookies = generate_cookies(ctext)
     try:
         r = session.get(main_url, cookies=cookies, headers=headers.headers2)
-    except (ConnectionError, ConnectionResetError):
+    except Exception as e:
+        print(type(e))
         return_msg = 'hdchina❌网络不通'
         print(return_msg)
         return return_msg
@@ -107,7 +109,8 @@ def chd():
     cookies = generate_cookies(ctext)
     try:
         r = session.get(url, cookies=cookies, headers=headers.headers1)
-    except (ConnectionError, ConnectionResetError):
+    except Exception as e:
+        print(type(e))
         return_msg = 'chd❌网络不通'
         print(return_msg)
         return return_msg
@@ -155,7 +158,8 @@ def hd_area():
     payload = {'action': 'sign_in'}
     try:
         r = session.post(url, cookies=cookies, headers=headers.headers1, data=payload)
-    except (ConnectionError, ConnectionResetError):
+    except Exception as e:
+        print(type(e))
         return_msg = 'hdarea❌网络不通'
         print(return_msg)
         return return_msg
@@ -182,7 +186,8 @@ def hd_time():
     cookies = generate_cookies(ctext)
     try:
         r = session.get(url, cookies=cookies, headers=headers.headers1)
-    except (ConnectionError, ConnectionResetError):
+    except Exception as e:
+        print(type(e))
         return_msg = 'hdtime❌网络不通'
         print(return_msg)
         return return_msg
@@ -216,7 +221,8 @@ def ttg():
     cookies = generate_cookies(ctext)
     try:
         r = session.get(main_url, cookies=cookies, headers=headers.headers1)
-    except (ConnectionError, ConnectionResetError):
+    except Exception as e:
+        print(type(e))
         return_msg = 'ttg❌网络不通'
         print(return_msg)
         return return_msg
