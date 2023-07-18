@@ -103,7 +103,7 @@ def hd_china():
 
 
 def chd():
-    url = 'https://chdbits.co/bakatest.php'
+    url = 'https://ptchdbits.co/bakatest.php'
     session = requests_html.HTMLSession()
     ctext = os.getenv("CHD_COOKIE")
     cookies = generate_cookies(ctext)
