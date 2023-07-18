@@ -151,7 +151,7 @@ def chd():
 
 
 def hd_area():
-    url = 'https://www.hdarea.co/sign_in.php'
+    url = 'https://www.hdarea.club/sign_in.php'
     session = requests_html.HTMLSession()
     ctext = os.getenv("HDA_COOKIE")
     cookies = generate_cookies(ctext)
