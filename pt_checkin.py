@@ -266,7 +266,7 @@ if __name__ == '__main__':
     title = '🐺pt签到'
     context = ln
     context = context + pt_time() + ln
-    context = context + hd_china() + ln
+    # context = context + hd_china() + ln
     context = context + chd() + ln
     context = context + hd_area() + ln
     context = context + hd_time() + ln
