@@ -38,18 +38,13 @@ def pt_time():
         return return_msg
 
     if r.status_code == requests.codes.ok:
-        # print(r.text)
+        print(r.text)  # 纯文本
         title = r.html.find('title')
-        if title:
-            if '登录' in title[0].text.split('\n')[0]:
-                return_msg = 'pttime❌登录失效'
-                print(return_msg)
-            else:
-                return_msg = 'pttime✔签到成功'
-                print(return_msg)
+        if title and '登录' in title[0].text.split('\n')[0]:
+            return_msg = 'pttime❌登录失效'
+            print(return_msg)
         else:
-            print(r.text)
-            return_msg = 'pttime签到失败，请查看日志'
+            return_msg = 'pttime✔签到成功'
             print(return_msg)
     else:
         print(r.status_code)
